@@ -1,4 +1,4 @@
-package io.jonashackt.lectures.exercises;
+package io.jonashackt.lectures.exercises.model.excptions;
 
 public class PersonNotFoundException extends Throwable {
     public PersonNotFoundException(String message) {

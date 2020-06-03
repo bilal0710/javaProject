@@ -1,15 +1,36 @@
-package io.jonashackt.lectures.exercises;
+package io.jonashackt.lectures.exercises.model;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import io.jonashackt.lectures.exercises.model.excptions.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
-public class AddressBook {
+@Entity
+public class AddressBook extends AbstractDatabaseEntity{
     private static final Logger LOG = LoggerFactory.getLogger(AddressBook.class);
 
-    private ArrayList<Person> persons = new ArrayList<>();
+    @OneToMany( cascade= CascadeType.PERSIST )
+    private List<Person> persons=new ArrayList<>() ;
+
+    public AddressBook() {
+
+    }
+
+    public AddressBook(ArrayList<Person> Contact) {
+        persons= new ArrayList<>();
+    }
+
+
+    public List<Person> getPersons() {
+
+        return  persons;
+    }
 
     public void addContact(Person person) {
         LOG.debug("Adding Person to AddressBook: " + person.toString());
