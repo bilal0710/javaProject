@@ -140,6 +140,18 @@ public class AddressBookTest {
 
         }
 
+    @Test
+    void controller_should_delete_a_Data_line() throws StorageException
+    {
+
+        controller.saveAddressbook(addressBook);
+        controller.deleteFromAddressbook(maxMustermann);
+        ab = controller.loadAddressbook();
+
+        assertEquals(2,ab.getSize());
+
+    }
+
 
 
 

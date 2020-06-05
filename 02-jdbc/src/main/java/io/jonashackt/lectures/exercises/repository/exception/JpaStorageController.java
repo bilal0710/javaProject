@@ -17,11 +17,22 @@ public class JpaStorageController implements IStorageController{
         return new AddressBook( new ArrayList<Person>( personsFromDatabase ) );
     }
 
+    public void deleteFromAddressbook( Person person) throws StorageException
+    {
+        IGenericDao<Person> personDao = DataController.getInstance().getPersonDao();
+        Person personsFromDatabase = personDao.findById(person.getId());
+        if(personsFromDatabase != null)
+        {
+            personDao.delete(person.getId());
+        }
+        else{
+            System.out.println("the Person is not in the Databank");
+        }
+    }
+
    public void saveAddressbook( AddressBook addressbook ) throws StorageException
     {
-
         IGenericDao<Person> personDao = DataController.getInstance().getPersonDao();
-
 
           for( Person person : addressbook.getPersons() )
         {

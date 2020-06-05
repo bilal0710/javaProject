@@ -1,5 +1,6 @@
 package io.jonashackt.lectures.exercises.repository.core;
 
+
 import java.util.Collection;
 
 public interface IGenericDao<T> {
@@ -8,6 +9,9 @@ public interface IGenericDao<T> {
     void create(T person);
 
     void update(T person);
+
+    T findById( Long id );
+    void delete(Long id );
 
 
 

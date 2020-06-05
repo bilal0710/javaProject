@@ -22,7 +22,7 @@ public class JpaGenericDao<T, ID extends Serializable> implements IGenericDao<T>
         this.entityManager = em;
     }
 
-    public T findById( final ID id )
+    public T findById( Long id )
     {
         final T result = getEntityManager().find( persistentClass, id );
         return result;
@@ -58,11 +58,12 @@ public class JpaGenericDao<T, ID extends Serializable> implements IGenericDao<T>
         //return savedEntity;
     }
 
-    public void delete( ID id )
+    public void delete( Long id )
     {
         T entity = this.findById( id );
         this.delete( entity );
     }
+
     public void delete( T entity )
     {
         getEntityManager().getTransaction().begin();
