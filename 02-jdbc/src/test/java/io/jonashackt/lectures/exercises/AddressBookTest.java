@@ -115,9 +115,11 @@ public class AddressBookTest {
     @BeforeEach
     void prepareAddressBook()  {
         addressBook = new AddressBook();
-        maxMustermann = new Person("Max", "Mustermann", "max.mustermann@email.de");
-        emmaWeber = new Person("Emma", "Weber", "emma.mueller@post.de");
-        manfredHerold = new Person("Manfred", "Herold", "manfred@herold.de");
+        ab = new AddressBook();
+
+        maxMustermann   = new Person("Max", "Mustermann", "max.mustermann@email.de");
+        emmaWeber       = new Person("Emma", "Weber", "emma.mueller@post.de");
+        manfredHerold   = new Person("Manfred", "Herold", "manfred@herold.de");
         controller= new  JpaStorageController();
 
 
@@ -126,16 +128,16 @@ public class AddressBookTest {
         addressBook.addContact(manfredHerold);
 
     }
-//Test funktioniert ee
+
         @Test
-        void controller_should_make_a_table_und_return_the_Names() throws StorageException
+        void controller_should_add_a_Data_line() throws StorageException
         {
 
             controller.saveAddressbook(addressBook);
-            //ab = controller.loadAddressbook();
-            /*for (Person person : addressBook.getPersons()) {
-                System.out.println(person.getLastName());
-            }*/
+            ab = controller.loadAddressbook();
+
+                assertEquals(3,ab.getSize());
+
         }
 
 

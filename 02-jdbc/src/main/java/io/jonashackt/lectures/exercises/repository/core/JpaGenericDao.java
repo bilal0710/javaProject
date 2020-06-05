@@ -28,17 +28,25 @@ public class JpaGenericDao<T, ID extends Serializable> implements IGenericDao<T>
         return result;
     }
 
+    /*public List<T> findAll()
+    {
+        Query query = getEntityManager().createNativeQuery( "SELECT * FROM " + getEntityClass().getSimpleName() );
+        return  query.getResultList();
+    }*/
+
     public Collection<T> findAll()
     {
         Query query = getEntityManager().createQuery( "SELECT e FROM " + getEntityClass().getCanonicalName() + " e" );
         return (Collection<T>) query.getResultList();
     }
+
+
     public void create(T entity )
     {
         getEntityManager().getTransaction().begin();
         getEntityManager().persist( entity );
         getEntityManager().getTransaction().commit();
-       // return entity;
+        //return entity;
     }
 
     

@@ -16,6 +16,7 @@ public class JpaStorageController implements IStorageController{
         Collection<Person> personsFromDatabase = personDao.findAll();
         return new AddressBook( new ArrayList<Person>( personsFromDatabase ) );
     }
+
    public void saveAddressbook( AddressBook addressbook ) throws StorageException
     {
 
@@ -28,6 +29,8 @@ public class JpaStorageController implements IStorageController{
                 personDao.create( person );
             else
         personDao.update( person );
+
+
     }
     }
 }

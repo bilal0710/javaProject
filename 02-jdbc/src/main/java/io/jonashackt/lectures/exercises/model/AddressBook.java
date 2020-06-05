@@ -23,7 +23,7 @@ public class AddressBook extends AbstractDatabaseEntity{
     }
 
     public AddressBook(ArrayList<Person> Contact) {
-        persons= new ArrayList<>();
+        persons= Contact;
     }
 
 
