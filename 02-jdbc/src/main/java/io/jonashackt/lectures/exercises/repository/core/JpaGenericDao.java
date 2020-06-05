@@ -50,12 +50,12 @@ public class JpaGenericDao<T, ID extends Serializable> implements IGenericDao<T>
     }
 
     
-    public void update( T entity )
+    public T update( T entity )
     {
         getEntityManager().getTransaction().begin();
         final T savedEntity = getEntityManager().merge( entity );
         getEntityManager().getTransaction().commit();
-        //return savedEntity;
+        return savedEntity;
     }
 
     public void delete( Long id )
@@ -67,18 +67,22 @@ public class JpaGenericDao<T, ID extends Serializable> implements IGenericDao<T>
     public void delete( T entity )
     {
         getEntityManager().getTransaction().begin();
+        if(!getEntityManager().contains(entity))
+            entity = getEntityManager().merge(entity);
         getEntityManager().remove( entity );
         getEntityManager().getTransaction().commit();
     }
+
     public void delete( List<T> entries )
     {
-        getEntityManager().getTransaction().begin();
-        for( T entry : entries )
+        for( T entity : entries )
         {
-            getEntityManager().remove( entry );
+            delete(entity);
         }
-        getEntityManager().getTransaction().commit();
+
     }
+
+
     public Class<T> getEntityClass()
     {
         return persistentClass;

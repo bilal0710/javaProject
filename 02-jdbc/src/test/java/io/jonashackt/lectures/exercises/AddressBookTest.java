@@ -21,6 +21,7 @@ public class AddressBookTest {
     Person maxMustermann;
     Person emmaWeber;
     Person manfredHerold;
+    Person bilal;
     ResultSet rs;
     Statement stmt;
     Connection conn;
@@ -136,25 +137,49 @@ public class AddressBookTest {
             controller.saveAddressbook(addressBook);
             ab = controller.loadAddressbook();
 
-                assertEquals(3,ab.getSize());
+            assertEquals(3,ab.getSize());
 
         }
+
+    @Test
+    void controller_should_edit_a_person_Data() throws StorageException
+    {
+
+        controller.saveAddressbook(addressBook);
+       // ab = controller.loadAddressbook();
+        bilal = controller.editPersonFromAddressbook(maxMustermann,"Tom");
+
+        assertEquals("Tom",bilal.getFirstName());
+
+    }
 
     @Test
     void controller_should_delete_a_Data_line() throws StorageException
     {
 
         controller.saveAddressbook(addressBook);
-        controller.deleteFromAddressbook(maxMustermann);
+        controller.deletePersonFromAddressbook(maxMustermann);
         ab = controller.loadAddressbook();
 
         assertEquals(2,ab.getSize());
 
     }
 
+    @Test
+    void controller_should_delete_the_whole_table() throws StorageException
+    {
+
+        controller.saveAddressbook(addressBook);
+        ab = controller.loadAddressbook();
+        controller.deleteTableFromAddressbook(ab.getPersons());
+        ab = controller.loadAddressbook();
+        assertEquals(0,ab.getSize());
+
+    }
 
 
 
+/*
     @Test
     void addressbook_should_store_persons_with_name_surename_email() throws PersonNotFoundException {
 
@@ -196,6 +221,7 @@ public class AddressBookTest {
         Person felixMeyer = new Person("Felix", "Meyer", "felix@meyer.io");
 
         assertEquals("Felix Meyer (felix@meyer.io)", felixMeyer.toString());
-    }
+    }*/
+
 }
 
