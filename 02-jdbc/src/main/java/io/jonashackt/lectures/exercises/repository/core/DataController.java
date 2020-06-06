@@ -1,6 +1,7 @@
 package io.jonashackt.lectures.exercises.repository.core;
 
 import io.jonashackt.lectures.exercises.model.Address;
+import io.jonashackt.lectures.exercises.model.AddressBook;
 import io.jonashackt.lectures.exercises.model.Person;
 
 import javax.persistence.EntityManagerFactory;
@@ -23,6 +24,7 @@ public class DataController {
     {
         this.entityManagerFactory = Persistence.createEntityManagerFactory( PERSISTENCE_UNIT_NAME );
     }
+
 
     public IGenericDao<Person> getPersonDao()
     {

@@ -15,7 +15,7 @@ import java.util.List;
 public class AddressBook extends AbstractDatabaseEntity{
     private static final Logger LOG = LoggerFactory.getLogger(AddressBook.class);
 
-    @OneToMany( cascade= CascadeType.PERSIST )
+    @OneToMany( cascade= CascadeType.PERSIST,mappedBy = "addressBook")
     private List<Person> persons=new ArrayList<>() ;
 
     public AddressBook() {

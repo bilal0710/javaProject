@@ -118,9 +118,9 @@ public class AddressBookTest {
         addressBook = new AddressBook();
         ab = new AddressBook();
 
-        maxMustermann   = new Person("Max", "Mustermann", "max.mustermann@email.de");
-        emmaWeber       = new Person("Emma", "Weber", "emma.mueller@post.de");
-        manfredHerold   = new Person("Manfred", "Herold", "manfred@herold.de");
+        maxMustermann   = new Person("Max", "Mustermann", "max.mustermann@email.de",addressBook);
+        emmaWeber       = new Person("Emma", "Weber", "emma.mueller@post.de",addressBook);
+        manfredHerold   = new Person("Manfred", "Herold", "manfred@herold.de",addressBook);
         controller= new  JpaStorageController();
 
 
